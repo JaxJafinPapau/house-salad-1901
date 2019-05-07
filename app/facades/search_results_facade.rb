@@ -8,7 +8,6 @@ class SearchResultsFacade
     "#{members.count} Results"
   end
 
-
   def members
     data = service.get_members
 
@@ -17,8 +16,9 @@ class SearchResultsFacade
     end
   end
 
+  private
 
-  def service
-    @_service ||= PropublicaService.new(state: @state)
-  end
+    def service
+      @_service ||= PropublicaService.new(state: @state)
+    end
 end
