@@ -5,18 +5,20 @@ class SearchResultsFacade
   end
 
   def header
-    "#{members.count} Results"
+    "#{member_data.count} Results"
   end
 
   def members
-    data = service.get_members
-
-    service.get_members[:results].map do |member_data|
+    member_data.map do |member_data|
       Member.new(member_data)
     end
   end
 
   private
+
+    def member_data
+      @_member_data ||= service.get_members[:results]
+    end
 
     def service
       @_service ||= PropublicaService.new(state: @state)
